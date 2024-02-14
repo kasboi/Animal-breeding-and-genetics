@@ -35,6 +35,7 @@
 .inputGroup input {
     padding: 5px;
     height: 45px;
+    font-size: 16px;
     border-radius: 5px;
     background: rgba(242, 242, 242, 0.5);
     border: 5px solid rgba(242, 242, 242, 0.5);
@@ -44,6 +45,7 @@
 
 textarea {
     height: 300px;
+    font-size: 16px;
     width: 100%;
     resize: none;
     padding: 20px;
