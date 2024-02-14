@@ -42,7 +42,8 @@
     width: 100%;
     outline: none;
 }
-.inputGroup input::placeholder{
+
+.inputGroup input::placeholder {
     font-size: 12px;
 }
 
@@ -59,7 +60,7 @@ textarea {
 }
 
 .btn {
-    margin: 10px 0 ;
+    margin: 10px 0;
     text-align: center
 }
 
@@ -89,6 +90,19 @@ textarea {
 
 
 
+.loader {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: white;
+    animation: l1 1s linear infinite alternate;
+  }
+  .loader:before {
+    content:"SUBMITTING..."
+  }
+  @keyframes l1 {to{opacity: 0}}
+
+
 @media (max-width: 768px) {
     .formContainer {
         flex-direction: row;
@@ -106,10 +120,12 @@ textarea {
         margin: 20px auto 0;
 
     }
-    .btn>button{
+
+    .btn>button {
         width: 100%;
     }
-    .inputGroup input::placeholder{
+
+    .inputGroup input::placeholder {
         font-size: 10px;
     }
 }

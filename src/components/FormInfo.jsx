@@ -29,7 +29,7 @@ export default function FormInfo() {
     e.preventDefault();
     setLoading(true);
     try {
-      if (Object.values(formData).some(field => !field)) {
+      if (Object.values(formData).some((field) => !field)) {
         alert("Please fill in all fields.");
         return;
       }
@@ -144,7 +144,7 @@ export default function FormInfo() {
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="locationOrCountry">
-              Location1 / Country of Residence:
+              Location / Country of Residence:
             </label>
             <input
               type="text"
@@ -179,7 +179,11 @@ export default function FormInfo() {
         </div>
         <div className={styles.btn}>
           <button type="submit" disabled={loading}>
-            {loading ? "Submitting..." : "SUBMIT"}
+            {loading ? (
+              <div className={styles.loader}></div>
+            ) : (
+              "SUBMIT"
+            )}
           </button>
         </div>
       </form>
