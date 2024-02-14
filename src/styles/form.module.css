@@ -1,0 +1,107 @@
+.main .heading {
+    font-size: 35px;
+
+    width: 60%;
+    text-align: center;
+    margin: 20px auto;
+
+}
+
+.main {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+
+.formContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.inputGroup {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 20px);
+}
+
+.inputGroup label {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.inputGroup input {
+    padding: 5px;
+    height: 45px;
+    border-radius: 5px;
+    background: rgba(242, 242, 242, 0.5);
+    border: 5px solid rgba(242, 242, 242, 0.5);
+    width: 100%;
+    outline: none;
+}
+
+textarea {
+    height: 300px;
+    width: 100%;
+    resize: none;
+    padding: 20px;
+    border-radius: 15px;
+    outline: none;
+    background: rgba(242, 242, 242, 0.5);
+    border: 0.2px solid black;
+}
+
+.btn {
+    margin: 10px 0 ;
+    text-align: center
+}
+
+.btn>button {
+    width: 20%;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
+    animation: gradientAnimation 5s infinite alternate;
+    background-size: 200% 100%;
+}
+
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+
+    }
+
+    100% {
+        background-position: 100% 50%;
+
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .formContainer {
+        flex-direction: row;
+    }
+
+    .inputGroup {
+        width: 100%;
+    }
+
+    .main .heading {
+        font-size: 20px;
+
+        width: 100%;
+        text-align: center;
+        margin: 20px auto 0;
+
+    }
+    .btn>button{
+        width: 100%;
+    }
+}
