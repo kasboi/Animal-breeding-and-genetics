@@ -1,94 +1,186 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import styles from "../styles/form.module.css";
+
 export default function FormInfo() {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    emailAddress: "",
+    phoneNumber: "",
+    graduatedYear: "",
+    previousJob: "",
+    currentJob: "",
+    locationOrCountry: "",
+    supervisor: "",
+    advice: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      if (Object.values(formData).some(field => !field)) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      await axios.post(
+        "https://animal-breeding-and-genetics.onrender.com/api/v1/user/post",
+        formData
+      );
+      alert("Form submitted successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        phoneNumber: "",
+        graduatedYear: "",
+        previousJob: "",
+        currentJob: "",
+        locationOrCountry: "",
+        supervisor: "",
+        advice: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to submit form. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className={styles.main}>
       <h1 className={styles.heading}>
         Alumni Form For The Department of Animal Breeding And Genetics
       </h1>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className={styles.formContainer}>
           <div className={styles.inputGroup}>
-            <label htmlFor="first-name">First Name:</label>
+            <label htmlFor="firstName">First Name:</label>
             <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
               placeholder="Enter your firstname"
-              type="text"
-              id="first-name"
-              name="first-name"
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="last-name">Last Name:</label>
+            <label htmlFor="lastName">Last Name:</label>
             <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
               placeholder="Enter your lastname"
-              type="text"
-              id="last-name"
-              name="last-name"
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="Email">Email Address</label>
+            <label htmlFor="emailAddress">Email Address:</label>
             <input
+              type="email"
+              id="emailAddress"
+              name="emailAddress"
+              value={formData.emailAddress}
+              onChange={handleChange}
               placeholder="Provide your email Address"
-              type="text"
-              id="Email"
-              name="email"
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="number">Phone Address</label>
+            <label htmlFor="phoneNumber">Phone Number:</label>
             <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
               placeholder="Provide your Phone Number"
-              type="text"
-              id="number"
-              name="number"
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="year">Graduated Year</label>
+            <label htmlFor="graduatedYear">Graduated Year:</label>
             <input
               type="text"
+              id="graduatedYear"
+              name="graduatedYear"
+              value={formData.graduatedYear}
+              onChange={handleChange}
               placeholder="Enter Graduated Year"
-              id="year"
-              name="year"
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="previous">Previous Job </label>
+            <label htmlFor="previousJob">Previous Job:</label>
             <input
               type="text"
+              id="previousJob"
+              name="previousJob"
+              value={formData.previousJob}
+              onChange={handleChange}
               placeholder="Previous Job"
-              id="previous"
-              name="previous"
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="current">Current Job</label>
-            <input type="text" id="current" name="current" />
+            <label htmlFor="currentJob">Current Job:</label>
+            <input
+              type="text"
+              id="currentJob"
+              name="currentJob"
+              value={formData.currentJob}
+              onChange={handleChange}
+              placeholder="Current Job"
+            />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="location">Location / Country of Residence</label>
+            <label htmlFor="locationOrCountry">
+              Location1 / Country of Residence:
+            </label>
             <input
-              placeholder="Location / Country of Residence"
               type="text"
-              id="location"
-              name="location"
+              id="locationOrCountry"
+              name="locationOrCountry"
+              value={formData.locationOrCountry}
+              onChange={handleChange}
+              placeholder="Location / Country of Residence"
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="supervisor">Who is your supervisor?</label>
+            <input
+              type="text"
+              id="supervisor"
+              name="supervisor"
+              value={formData.supervisor}
+              onChange={handleChange}
+              placeholder="Who is your supervisor?"
             />
           </div>
         </div>
         <div>
-          <label htmlFor="advice">
-            Advice for the Department
-          </label>
+          <label htmlFor="advice">Advice for the Department:</label>
           <textarea
-            placeholder="Advice for the Department"
-            type="text"
             id="advice"
             name="advice"
+            value={formData.advice}
+            onChange={handleChange}
+            placeholder="Advice for the Department"
           />
         </div>
         <div className={styles.btn}>
-            <button>SUBMIT</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Submitting..." : "SUBMIT"}
+          </button>
         </div>
       </form>
     </main>
