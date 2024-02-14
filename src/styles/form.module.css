@@ -42,6 +42,9 @@
     width: 100%;
     outline: none;
 }
+.inputGroup input::placeholder{
+    font-size: 12px;
+}
 
 textarea {
     height: 300px;
@@ -105,5 +108,8 @@ textarea {
     }
     .btn>button{
         width: 100%;
+    }
+    .inputGroup input::placeholder{
+        font-size: 10px;
     }
 }
