@@ -16,6 +16,7 @@ export default function FormInfo() {
     supervisor: "",
     advice: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,10 +30,6 @@ export default function FormInfo() {
     e.preventDefault();
     setLoading(true);
     try {
-      if (Object.values(formData).some((field) => !field)) {
-        alert("Please fill in all fields.");
-        return;
-      }
       await axios.post(
         "https://animal-breeding-and-genetics.onrender.com/api/v1/user/post",
         formData
@@ -51,8 +48,7 @@ export default function FormInfo() {
         advice: "",
       });
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Failed to submit form. Please try again later.");
+      alert("check the input field");
     } finally {
       setLoading(false);
     }
@@ -76,6 +72,10 @@ export default function FormInfo() {
               placeholder="Enter your firstname"
             />
           </div>
+          {errors && errors.firstName && (
+            <span className={styles.error}>{errors.firstName}</span>
+          )}
+
           <div className={styles.inputGroup}>
             <label htmlFor="lastName">Last Name:</label>
             <input
@@ -95,7 +95,7 @@ export default function FormInfo() {
               name="emailAddress"
               value={formData.emailAddress}
               onChange={handleChange}
-              placeholder="Provide your email Address"
+              placeholder="Provide your email Address eg funaab@gmail.com"
             />
           </div>
           <div className={styles.inputGroup}>
@@ -106,7 +106,7 @@ export default function FormInfo() {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="Provide your Phone Number"
+              placeholder="Provide your Phone Number eg 08168043011"
             />
           </div>
           <div className={styles.inputGroup}>
@@ -117,7 +117,7 @@ export default function FormInfo() {
               name="graduatedYear"
               value={formData.graduatedYear}
               onChange={handleChange}
-              placeholder="Enter Graduated Year"
+              placeholder="Enter Graduated Year eg 2023"
             />
           </div>
           <div className={styles.inputGroup}>
@@ -128,9 +128,10 @@ export default function FormInfo() {
               name="previousJob"
               value={formData.previousJob}
               onChange={handleChange}
-              placeholder="Previous Job"
+              placeholder="Previous Job eg Backend software engineer"
             />
           </div>
+
           <div className={styles.inputGroup}>
             <label htmlFor="currentJob">Current Job:</label>
             <input
@@ -139,7 +140,7 @@ export default function FormInfo() {
               name="currentJob"
               value={formData.currentJob}
               onChange={handleChange}
-              placeholder="Current Job"
+              placeholder="Current Job eg software engineer"
             />
           </div>
           <div className={styles.inputGroup}>
@@ -152,7 +153,7 @@ export default function FormInfo() {
               name="locationOrCountry"
               value={formData.locationOrCountry}
               onChange={handleChange}
-              placeholder="Location / Country of Residence"
+              placeholder="Location / Country of Residence eg Abeokuta/Nigeria"
             />
           </div>
           <div className={styles.inputGroup}>
@@ -179,11 +180,7 @@ export default function FormInfo() {
         </div>
         <div className={styles.btn}>
           <button type="submit" disabled={loading}>
-            {loading ? (
-              <div className={styles.loader}></div>
-            ) : (
-              "SUBMIT"
-            )}
+            {loading ? <div className={styles.loader}></div> : "SUBMIT"}
           </button>
         </div>
       </form>
