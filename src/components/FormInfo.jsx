@@ -47,6 +47,7 @@ export default function FormInfo() {
         advice: "",
       });
     } catch (error) {
+     console.log( error.message);
       alert("check the input field");
     } finally {
       setLoading(false);
@@ -71,9 +72,7 @@ export default function FormInfo() {
               placeholder="Enter your firstname"
             />
           </div>
-          {errors && errors.firstName && (
-            <span className={styles.error}>{errors.firstName}</span>
-          )}
+        
 
           <div className={styles.inputGroup}>
             <label htmlFor="lastName">Last Name:</label>

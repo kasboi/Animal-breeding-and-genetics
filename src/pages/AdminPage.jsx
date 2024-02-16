@@ -13,9 +13,11 @@ function Admin() {
   }, [currentPage]);
 
   const fetchUsers = async () => {
+    const url = `https://abg-3n55.onrender.com/api/v1/admin/page?page=${currentPage}&limit=${pageSize}`;
+
     try {
       const response = await axios.get(
-        `http://localhost:2024/api/v1/admin/page?page=${currentPage}&limit=${pageSize}`
+     url
       );
       const { users, totalUsers } = response.data.data;
       setUsers(users);

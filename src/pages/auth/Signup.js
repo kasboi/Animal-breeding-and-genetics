@@ -1,28 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styles from '../../styles/signup.module.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { CreateAuth } from '../../components/context-api/Auth';
 
-const Signup = () => {
+const Signup = ({updateStatus,active,setActive}) => {
+
+    const url = "http://localhost:2028/api/v1/admin/signup";
+
+    // const url = "https://abg-3n55.onrender.com/api/v1/admin/signup";
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        confirmPassword: ''
     });
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        try {
+            const response = await axios.post(url, formData);
+            console.log('Response:', response.data.data);
+         
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
         <>
             <main className={styles.main1}>
-
                 <div className={styles.container}>
                     <h2>Signup</h2>
                     <form onSubmit={handleSubmit} className={styles.form}>
@@ -57,7 +68,6 @@ const Signup = () => {
                         <div>
                             Already have an account ? <Link to={'/auth/login'}> Login</Link>
                         </div>
-
                     </form>
                 </div>
             </main>
