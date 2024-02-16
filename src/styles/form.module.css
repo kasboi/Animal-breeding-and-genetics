@@ -1,4 +1,4 @@
-.main .heading {
+.main2 .heading {
     font-size: 35px;
 
     width: 60%;
@@ -7,7 +7,7 @@
 
 }
 
-.main {
+.main2 {
     width: 90%;
     margin: 0 auto;
 }
@@ -107,7 +107,10 @@ textarea {
     .formContainer {
         flex-direction: row;
     }
-
+    .main2 .heading {
+        font-size: 14px;
+        width: 100%;
+    }
     .inputGroup {
         width: 100%;
     }

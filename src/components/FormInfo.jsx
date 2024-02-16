@@ -31,7 +31,7 @@ export default function FormInfo() {
     setLoading(true);
     try {
       await axios.post(
-        "https://animal-breeding-and-genetics.onrender.com/api/v1/user/post",
+        "https://abg-3n55.onrender.com/api/v1/user/post",
         formData
       );
       alert("Form submitted successfully!");
@@ -55,7 +55,7 @@ export default function FormInfo() {
   };
 
   return (
-    <main className={styles.main}>
+    <main className={styles.main2}>
       <h1 className={styles.heading}>
         Alumni Form For The Department of Animal Breeding And Genetics
       </h1>
