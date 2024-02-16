@@ -6,7 +6,6 @@ const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        confirmPassword: ''
     });
 
     const handleChange = (e) => {

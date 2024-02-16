@@ -6,6 +6,10 @@ import Landing from './pages/Landing';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/login';
 import OTPConfirmationPage from './pages/auth/otp';
+import Admin from './pages/AdminPage';
+
+// http://localhost:2024/api/v1/admin/get
+
 // require('dotenv').config()
 function App() {
   return useRoutes([
@@ -14,18 +18,22 @@ function App() {
       element: <Layout />,
       children: [{
         path: "/",
-        element: <Landing/>,
-      },{
+        element: <Landing />,
+      }, {
         path: "/auth/signup",
-        element: <Signup/>,
-      },{
+        element: <Signup />,
+      }, {
         path: "/auth/login",
-        element: <Login/>,
-      },{
+        element: <Login />,
+      }, {
         path: "/auth/otp",
-        element: <OTPConfirmationPage/>,
+        element: <OTPConfirmationPage />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />
       }
-    ]
+      ]
     }
   ]
 
