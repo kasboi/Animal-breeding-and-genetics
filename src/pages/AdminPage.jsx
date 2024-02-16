@@ -35,7 +35,7 @@ function Admin() {
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Email</th>
+            <th>Email Address</th>
             <th>Phone Number</th>
             <th>Graduation Year</th>
             <th>Previous Job</th>
@@ -62,7 +62,7 @@ function Admin() {
           ))}
         </tbody>
       </table>
-      <div>
+      <div className={styles.page}>
         <button disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
         <span>Page {currentPage} of {totalPages}</span>
         <button disabled={currentPage === totalPages} onClick={() => handlePageChange(currentPage + 1)}>Next</button>
