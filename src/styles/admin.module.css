@@ -1,36 +1,65 @@
 .adminContainer {
     width: 100%;
-    overflow-x: auto; 
-  }
-  
-  .tableContainer {
+    height: 100vh;
+    overflow-x: auto;
+}
+
+.tableContainer {
     overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table {
     width: 100%;
     border-collapse: collapse;
-  }
-  .table th{
+}
+
+.table th {
     font-size: 15px;
-  }
-  .table th,
-  .table td {
-    padding: 12px; 
+}
+
+.table th,
+.table td {
+    padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
     white-space: nowrap;
-  }
+}
 
-  .page{
+.page {
     display: flex;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-  }
-  @media screen and (max-width: 600px) {
-    .table {
-      font-size: 12px;
+}
+
+.page>button {
+    background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
+    animation: gradientAnimation 5s infinite alternate;
+    background-size: 200% 100%;
+    border: none;
+    width:100px ;
+    color: white;
+    border-radius: 20px;
+    height: 30px;
+}
+.page{
+    margin: 10px 0;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+
     }
-  }
-  
+
+    100% {
+        background-position: 100% 50%;
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .table {
+        font-size: 12px;
+    }
+}

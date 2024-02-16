@@ -17,7 +17,6 @@ export default function FormInfo() {
     advice: "",
   });
   const [errors, setErrors] = useState({});
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -157,14 +156,14 @@ export default function FormInfo() {
             />
           </div>
           <div className={styles.inputGroup}>
-            <label htmlFor="supervisor">Who is your supervisor?</label>
+            <label htmlFor="supervisor">Who was your supervisor?</label>
             <input
               type="text"
               id="supervisor"
               name="supervisor"
               value={formData.supervisor}
               onChange={handleChange}
-              placeholder="Who is your supervisor?"
+              placeholder="Who was your supervisor?"
             />
           </div>
         </div>

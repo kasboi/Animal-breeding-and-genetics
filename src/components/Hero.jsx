@@ -9,8 +9,8 @@ export default function Hero() {
         <section className={styles.main}>
           <div className={styles.content}>
             <button>Gene-ius</button>
-            <h1>Department of Animal Breeding And Genetics</h1>
-            <p>Dna Extraction and Biotechnology</p>
+            <h1>Department of Animal Breeding And Genetics /Biotechnology</h1>
+            <p>Genetics and Biotechnology</p>
             <div className={styles.circle}>
               <p>ABG Department</p>
             </div>
