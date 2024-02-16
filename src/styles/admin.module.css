@@ -5,20 +5,23 @@
   
   .tableContainer {
     overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   }
   
   .table {
     width: 100%;
     border-collapse: collapse;
   }
-  
+  .table th{
+    font-size: 15px;
+  }
   .table th,
   .table td {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
   }
-  
+ 
   @media screen and (max-width: 600px) {
     .table {
       font-size: 12px;
