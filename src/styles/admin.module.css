@@ -16,6 +16,7 @@
 
 .table th {
     font-size: 15px;
+    /* background: red; */
 }
 
 .table th,
@@ -61,5 +62,8 @@
 @media screen and (max-width: 600px) {
     .table {
         font-size: 12px;
+        height: 50px;
+    
     }
+    
 }
