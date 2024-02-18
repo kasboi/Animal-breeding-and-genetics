@@ -4,12 +4,12 @@ import styles from '../../styles/signup.module.css';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { CreateAuth } from '../../components/context-api/Auth';
 
-const Signup = ({updateStatus,active,setActive}) => {
-
-    const url = "http://localhost:2028/api/v1/admin/signup";
+const Signup = () => {
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
 
     // const url = "https://abg-3n55.onrender.com/api/v1/admin/signup";
-    const [formData, setFormData] = useState({
+    const [payload, setPayload] = useState({
         email: '',
         password: '',
     });
@@ -17,18 +17,33 @@ const Signup = ({updateStatus,active,setActive}) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setPayload({ ...payload, [name]: value });
     };
-
+    const url = "https://abg-3n55.onrender.com/api/v1/admin/signup";
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post(process.env.REACT_APP_SIGNUP, formData);
-            console.log('Response:', response.data.data);
-         
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        setLoading(true);
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if (result.status === 'success') {
+                    navigate('/auth/otp')
+
+                }
+            }).catch((error) => {
+                console.error("Error:", error);
+            })
+            .finally(() => {
+                setLoading(false); // Stop loading
+            });
+
     };
 
     return (
@@ -43,7 +58,7 @@ const Signup = ({updateStatus,active,setActive}) => {
                                 type="email"
                                 name="email"
                                 placeholder="Email"
-                                value={formData.email}
+                                value={payload.email}
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
@@ -55,7 +70,7 @@ const Signup = ({updateStatus,active,setActive}) => {
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                value={formData.password}
+                                value={payload.password}
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
@@ -63,7 +78,9 @@ const Signup = ({updateStatus,active,setActive}) => {
                         </div>
 
                         <div className={styles.btn}>
-                            <button type="submit" className={styles.button}>Signup</button>
+                            <button type="submit" className={styles.button} disabled={loading}>
+                                {loading ? "Loading.." : "Login"}
+                            </button>
                         </div>
                         <div>
                             Already have an account ? <Link to={'/auth/login'}> Login</Link>

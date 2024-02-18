@@ -50,11 +50,11 @@ const OTPConfirmationPage = () => {
   };
 
   const handleSubmit = async (e) => {
+    const URL='https://abg-3n55.onrender.com/api/v1/admin/confirm-otp'
     e.preventDefault();
     const enteredOTP = otp.join("");
-
     try {
-      const response = await axios.post(process.env.REACT_APP_CONFIRM, { otp: enteredOTP });
+      const response = await axios.post(URL, { otp: enteredOTP });
       console.log("Response:", response.data);
       navigate("/admin");
     } catch (error) {

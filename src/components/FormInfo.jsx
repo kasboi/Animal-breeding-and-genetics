@@ -4,7 +4,7 @@ import styles from "../styles/form.module.css";
 
 export default function FormInfo() {
   const [loading, setLoading] = useState(false);
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = 'https://abg-3n55.onrender.com/api/v1/user/post';
   
   const [payload, setPayload] = useState({
     firstName: "",

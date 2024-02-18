@@ -1,234 +1,314 @@
 .adminContainer {
-    width: 100%;
-    height: 100vh;
-    overflow-x: auto;
-    scroll-behavior: smooth;
+  width: 100%;
+  height: 100vh;
+  overflow-x: auto;
+  scroll-behavior: smooth;
 }
 
 
-.effect{
-    background-color: black;
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 120; 
+.menuButton {
+  display: none;
 }
-.table thead th {
-    padding: 8px;
-    position: sticky;
-    top: 0; 
-    height: 50px;
-  }
-.all{
-    background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
-    animation: gradientAnimation 5s infinite alternate;
-    background-size: 200% 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+
+.effect {
+  width: 100%;
+  padding: 10px 5px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+
+
 }
-.tableOverflow{
-    overflow: scroll;  
+
+nav {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
 }
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.all {
+  background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
+  animation: gradientAnimation 5s infinite alternate;
+  background-size: 200% 100%;
+  height: 100vh;
+  text-overflow: ellipsis;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tableOverflow {
+  overflow: scroll;
+  padding-top: 70px;
+}
+
 @keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
+  0% {
+    background-position: 0% 50%;
 
-    }
+  }
 
-    100% {
-        background-position: 100% 50%;
+  100% {
+    background-position: 100% 50%;
 
-    }
+  }
 }
 
 .table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.table th {
-    border: 1px solid #ddd; 
-    padding: 8px;
-    text-align: left;
-  }
-
-  .table tr:nth-child(even) {
-    /* background-color: #f2f2f2;  */
-  }
-  
-  .table tr:nth-child(odd) {
-    background-color: #ffffff; 
-  }
-  .table td {
-    border: 1px solid #ddd; 
-    padding: 8px;
-  }
-  
-.table th {
-    font-size: 15px;
-    background-color:plum; 
-    border: 1px solid #ddd; 
-    padding: 8px;
-    text-align: left;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    /* background: red; */
+  width: 100%;
+  border-collapse: collapse;
 }
 
-  
+.table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table tr:nth-child(even) {
+  /* background-color: #f2f2f2;  */
+}
+
+.table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  font-size: 15px;
+  background-color: plum;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  /* background: red; */
+}
+
+
 .table th,
 .table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-    white-space: nowrap;
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .page {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .page>button {
-    background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
-    animation: gradientAnimation 5s infinite alternate;
-    background-size: 200% 100%;
-    border: none;
-    width:100px ;
-    color: white;
-    border-radius: 20px;
-    height: 30px;
+  background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
+  animation: gradientAnimation 5s infinite alternate;
+  background-size: 200% 100%;
+  border: none;
+  width: 100px;
+  color: white;
+  border-radius: 20px;
+  height: 30px;
 }
-.page{
-    margin: 10px 0;
+
+.page {
+  margin: 10px 0;
 }
 
 /* column */
 
 
 .table td {
-    border: 1px solid #ddd; 
-    padding: 8px;
-  }
-  
-  
-  .table td:nth-child(1) {
-    background-color: #ffcccc; 
-  }
-  
-  .table td:nth-child(2) {
-    background-color: #ccffcc; 
-  }
-  
-  .table td:nth-child(3) {
-    background-color: #ccccff;
-  }
-  
-  .table td:nth-child(4) {
-    background-color: #ffffcc; 
-  }
-  
-  .table td:nth-child(5) {
-    background-color: #ffccff; 
-  }
-  
-  .table td:nth-child(6) {
-    background-color: #ccffff; 
-  }
-  
-  .table td:nth-child(7) {
-    background-color: #ffddcc;
-  }
-  
-  .table td:nth-child(8) {
-    background-color: #ddffcc;
-  }
-  
-  .table td:nth-child(9) {
-    background-color: #ccddff;
-  }
-  
-  .table td:nth-child(10) {
-    background-color: #ffeecc; 
-  }
-  /* column  end*/
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+.table td:nth-child(1) {
+  background-color: #ffcccc;
+}
+
+.table td:nth-child(2) {
+  background-color: #ccffcc;
+}
+
+.table td:nth-child(3) {
+  background-color: #ccccff;
+}
+
+.table td:nth-child(4) {
+  background-color: #ffffcc;
+}
+
+.table td:nth-child(5) {
+  background-color: #ffccff;
+}
+
+.table td:nth-child(6) {
+  background-color: #ccffff;
+}
+
+.table td:nth-child(7) {
+  background-color: #ffddcc;
+}
+
+.table td:nth-child(8) {
+  background-color: #ddffcc;
+}
+
+.table td:nth-child(9) {
+  background-color: #ccddff;
+}
+
+.table td:nth-child(10) {
+  background-color: #ffeecc;
+}
+
+/* column  end*/
 
 
 
-  /* row */
+/* row */
 .table td {
-    border: 1px solid #ddd; 
-    padding: 8px;
-  }
-  
-  
-  .table tr:nth-child(1n) td {
-    background-color: #ffcccc; 
-  }
-  
-  .table tr:nth-child( 2n) td {
-    background-color: #ccffcc;
-  }
-  
-  .table tr:nth-child(3n) td {
-    background-color: #ccccff; 
-  }
-  
-  .table tr:nth-child(4n) td {
-    background-color: #ffccff; 
-  }
-
-  .table tr:nth-child(5n) td {
-    background-color: #ffffcc; 
-  }
-
-  .table tr:nth-child(6n) td {
-    background-color: #ccffff; 
-  }
-  
-
-  .table tr:nth-child(7n) td {
-    background-color: #ff99cc; 
-  }
-  
-
-  .table tr:nth-child(8n) td {
-    background-color: #99ffcc; 
-  }
-  
-
-  .table tr:nth-child(9n) td {
-    background-color: #cc99ff; 
-  }
-  .table tr:nth-child(10n) td {
-    background-color: plum; 
-  }
-
-  
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
 
-  
- 
+.table tr:nth-child(1n) td {
+  background-color: #ffcccc;
+}
+
+.table tr:nth-child(2n) td {
+  background-color: #ccffcc;
+}
+
+.table tr:nth-child(3n) td {
+  background-color: #ccccff;
+}
+
+.table tr:nth-child(4n) td {
+  background-color: #ffccff;
+}
+
+.table tr:nth-child(5n) td {
+  background-color: #ffffcc;
+}
+
+.table tr:nth-child(6n) td {
+  background-color: #ccffff;
+}
+
+
+.table tr:nth-child(7n) td {
+  background-color: #ff99cc;
+}
+
+
+.table tr:nth-child(8n) td {
+  background-color: #99ffcc;
+}
+
+
+.table tr:nth-child(9n) td {
+  background-color: #cc99ff;
+}
+
+.table tr:nth-child(10n) td {
+  background-color: plum;
+}
+
+.admin >button{
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  height: 45px;
+  background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
+  animation: gradientAnimation 5s infinite alternate;
+  background-size: 200% 100%;
+  border: none;
+  color: white;
+  border-radius: 5px;
+
+  }
+  .header>p{
+    font-size: 13px;
+    
+  }
+
+
+
 @keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
+  0% {
+    background-position: 0% 50%;
 
-    }
+  }
 
-    100% {
-        background-position: 100% 50%;
+  100% {
+    background-position: 100% 50%;
 
-    }
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .table {
-        font-size: 12px;
-        height: 50px;
-    
-    }
-    
+  .table {
+    font-size: 12px;
+
+
+  }
+
+  nav {
+    flex-direction: column-reverse;
+    position: fixed;
+    padding: 20px 5px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 45px;
+    background: black;
+    /* background: red; */
+  }
+
+  .admin {
+    margin-top: 10px;
+  }
+
+
+  .menuButton {
+    display: block;
+  }
+
+  nav ul {
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .h1 {
+    font-size: 16px;
+  }
+
+  .navMenu {
+    display: block;
+  }
+
+  .hideNavMenu {
+    display: none;
+  }
+
 }

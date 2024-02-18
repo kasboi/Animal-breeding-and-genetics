@@ -4,8 +4,9 @@ import axios from "axios";
 import styles from "../../styles/signup.module.css";
 
 const Login = () => {
-  // const url = "http://localhost:2028/api/v1/admin/login";
-  const [formData, setFormData] = useState({
+  const url = "https://abg-3n55.onrender.com/api/v1/admin/login";
+  const [loading, setLoading] = useState(false);
+  const [payload, setPayload] = useState({
     email: "",
     password: "",
   });
@@ -13,24 +14,37 @@ const Login = () => {
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setPayload({ ...payload, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(process.env.REACT_APP_LOGIN, formData);
-      const { token } =response.data.data;
-      if (!token) {
-        console.error("Token not found in response:", response.data);
-        return;
-      }
-      console.log("Token:", token);
-      localStorage.setItem("token", token);
-      navigate("/admin");
-    } catch (error) {
-      console.error("Login Error:", error);
-    }
+    setLoading(true);
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        if (result.status === "success") {
+          // get the token from our json
+          const token = result.data.token;
+          console.log(token);
+          navigate("/admin");
+          // put the token on local storage
+          localStorage.setItem("token", token);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -45,7 +59,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={formData.email}
+                value={payload.email}
                 onChange={handleChange}
                 className={styles.input}
                 required
@@ -57,15 +71,19 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="Password"
-                value={formData.password}
+                value={payload.password}
                 onChange={handleChange}
                 className={styles.input}
                 required
               />
             </div>
             <div className={styles.btn}>
-              <button type="submit" className={styles.button}>
-                Login
+              <button
+                type="submit"
+                className={styles.button}
+                disabled={loading}
+              >
+                {loading ? "Logging in..." : "Login"}
               </button>
             </div>
             <div>
