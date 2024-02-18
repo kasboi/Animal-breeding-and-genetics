@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/form.module.css";
 
@@ -23,16 +23,17 @@ export default function FormInfo() {
       ...prevData,
       [name]: value,
     }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: null,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(
-        "https://abg-3n55.onrender.com/api/v1/user/post",
-        formData
-      );
+      await axios.post("http://localhost:2028/api/v1/user/post", formData);
       alert("Form submitted successfully!");
       setFormData({
         firstName: "",
@@ -47,13 +48,27 @@ export default function FormInfo() {
         advice: "",
       });
     } catch (error) {
-     console.log( error.message);
-      alert("check the input field");
+      if (error.response && error.response.data) {
+        const serverErrors = error.response.data.message;
+        const formErrors = {};
+        Object.keys(formData).forEach((field) => {
+          if (serverErrors[field]) {
+            formErrors[field] = serverErrors[field];
+          }
+        });
+        setErrors(formErrors);
+        console.log(errors);
+      } else {
+        console.log(error.message);
+        alert("Failed to submit form. Please try again later.");
+      }
     } finally {
       setLoading(false);
     }
   };
-
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
   return (
     <main className={styles.main2}>
       <h1 className={styles.heading}>
@@ -72,8 +87,9 @@ export default function FormInfo() {
               placeholder="Enter your firstname"
             />
           </div>
-        
-
+          {errors.firstName && (
+            <span className={styles.error}>{errors.firstName}</span>
+          )}
           <div className={styles.inputGroup}>
             <label htmlFor="lastName">Last Name:</label>
             <input
@@ -85,6 +101,9 @@ export default function FormInfo() {
               placeholder="Enter your lastname"
             />
           </div>
+          {errors.lastName && (
+            <span className={styles.error}>{errors.lastName}</span>
+          )}
           <div className={styles.inputGroup}>
             <label htmlFor="emailAddress">Email Address:</label>
             <input
