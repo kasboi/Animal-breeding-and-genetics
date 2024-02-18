@@ -265,7 +265,7 @@ nav ul {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .table {
     font-size: 12px;
 
