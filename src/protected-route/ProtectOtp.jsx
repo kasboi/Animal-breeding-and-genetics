@@ -9,24 +9,20 @@
 //   return active ? children : <Signup />;
 // }
 
-
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Signup from '../pages/auth/Signup';
-import OTPConfirmationPage from '../pages/auth/otp';
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Signup from "../pages/auth/Signup";
+import OTPConfirmationPage from "../pages/auth/OtpPage";
 
 const ProtectOtp = ({ active }) => {
   const navigate = useNavigate();
 
   if (active) {
-    return <OTPConfirmationPage/>
+    return <OTPConfirmationPage />;
   } else {
-    navigate('/auth/signup');
-    return <Signup/>
+    navigate("/auth/signup");
+    return <Signup />;
   }
 };
 
 export default ProtectOtp;
-

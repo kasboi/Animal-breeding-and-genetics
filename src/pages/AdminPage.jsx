@@ -8,7 +8,7 @@ function Admin() {
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize, setPageSize] = useState(20);
   const [adminEmail, setAdminEmail] = useState("");
-
+  
   useEffect(() => {
     fetchUserInfo();
     fetchUsers();
@@ -20,11 +20,9 @@ function Admin() {
       console.error("Token not found in local storage");
       return;
     }
-  
-    const url = "http://localhost:2028/api/v1/admin/information";
-  
+ 
     try {
-      const response = await axios.get(url, {
+      const response = await axios.get(process.env.REACT_APP_INFORMATION, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,9 +40,8 @@ function Admin() {
       console.error("Token not found in local storage");
       return;
     }
-    const url = `http://localhost:2028/api/v1/admin/page?page=${currentPage}&limit=${pageSize}`;
     try {
-      const response = await axios.get(url, {
+      const response = await axios.get(process.env.REACT_APP_PAGE, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -5,7 +5,6 @@ import axios from "axios";
 
 
 const OTPConfirmationPage = () => {
-  const url = "https://abg-3n55.onrender.com/api/v1/admin/confirm-otp";
   const navigate = useNavigate();
   const handleNavigateBack = () => {
     navigate("/auth/signup");
@@ -55,7 +54,7 @@ const OTPConfirmationPage = () => {
     const enteredOTP = otp.join("");
 
     try {
-      const response = await axios.post(url, { otp: enteredOTP });
+      const response = await axios.post(process.env.REACT_APP_CONFIRM, { otp: enteredOTP });
       console.log("Response:", response.data);
       navigate("/admin");
     } catch (error) {

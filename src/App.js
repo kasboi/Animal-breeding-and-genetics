@@ -4,11 +4,11 @@ import { Navigate, Outlet, useNavigate, useRoutes } from 'react-router-dom';
 import Layout from './layouts/Layout';
 import Landing from './pages/Landing';
 import Signup from './pages/auth/Signup';
-import Login from './pages/auth/login';
-import OTPConfirmationPage from './pages/auth/otp';
+import OTPConfirmationPage from './pages/auth/OtpPage';
 import Admin from './pages/AdminPage';
 import { useEffect, useState } from 'react';
 import ProtectOtp from './protected-route/ProtectOtp';
+import Login from './pages/auth/LoginPage';
 
 function App() {
   const [active, setActive] = useState(false)
@@ -40,7 +40,7 @@ function App() {
         path: "/auth/login",
         element: <Login />,
       },
-    {
+      {
         path: "/auth/otp",
         element: <OTPConfirmationPage />,
       },
@@ -65,4 +65,3 @@ function App() {
 export default App;
 
 
-  

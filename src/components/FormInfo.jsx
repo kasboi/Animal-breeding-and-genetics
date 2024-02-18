@@ -4,7 +4,9 @@ import styles from "../styles/form.module.css";
 
 export default function FormInfo() {
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const apiUrl = process.env.REACT_APP_API_URL;
+  
+  const [payload, setPayload] = useState({
     firstName: "",
     lastName: "",
     emailAddress: "",
@@ -19,12 +21,13 @@ export default function FormInfo() {
   const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setPayload((data) => ({
+      ...data,
       [name]: value,
     }));
-    setErrors((prevErrors) => ({
-      ...prevErrors,
+    // clear error when typing
+    setErrors((error) => ({
+      ...error,
       [name]: null,
     }));
   };
@@ -33,9 +36,9 @@ export default function FormInfo() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:2028/api/v1/user/post", formData);
+      await axios.post(apiUrl, payload);
       alert("Form submitted successfully!");
-      setFormData({
+      setPayload({
         firstName: "",
         lastName: "",
         emailAddress: "",
@@ -48,29 +51,30 @@ export default function FormInfo() {
         advice: "",
       });
     } catch (error) {
+      // error message from server
       if (error.response && error.response.data) {
         const serverErrors = error.response.data.message;
         const formErrors = {};
-        Object.keys(formData).forEach((field) => {
+        Object.keys(payload).forEach((field) => {
           if (serverErrors[field]) {
             formErrors[field] = (
-              <span className={styles.error}>{serverErrors[field]}</span>
+              <span className={styles.error}>
+                {/* replace quote in error message */}
+                {/* {serverErrors[field].replace(/"/g, "")} */}
+                {serverErrors[field]}
+              </span>
             );
           }
         });
         setErrors(formErrors);
-        console.log(errors);
+        // error message from server
       } else {
-        console.log(error.message);
         alert("Failed to submit form. Please try again later.");
       }
     } finally {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
   return (
     <main className={styles.main2}>
       <h1 className={styles.heading}>
@@ -84,11 +88,11 @@ export default function FormInfo() {
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
+              value={payload.firstName}
               onChange={handleChange}
               placeholder="Enter your firstname"
             />
-            <span> {errors.firstName}</span>
+            {errors.firstName && <span>{errors.firstName}</span>}
           </div>
 
           <div className={styles.inputGroup}>
@@ -97,11 +101,11 @@ export default function FormInfo() {
               type="text"
               id="lastName"
               name="lastName"
-              value={formData.lastName}
+              value={payload.lastName}
               onChange={handleChange}
               placeholder="Enter your lastname"
             />
-            <span> {errors.lastName}</span>
+            {errors.lastName && <span>{errors.lastName}</span>}
           </div>
 
           <div className={styles.inputGroup}>
@@ -110,11 +114,11 @@ export default function FormInfo() {
               type="email"
               id="emailAddress"
               name="emailAddress"
-              value={formData.emailAddress}
+              value={payload.emailAddress}
               onChange={handleChange}
               placeholder="Provide your email Address eg funaab@gmail.com"
             />
-                <span> {errors.emailAddress}</span>
+            {errors.emailAddress && <span>{errors.emailAddress}</span>}
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="phoneNumber">Phone Number:</label>
@@ -122,11 +126,11 @@ export default function FormInfo() {
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
-              value={formData.phoneNumber}
+              value={payload.phoneNumber}
               onChange={handleChange}
               placeholder="Provide your Phone Number eg 08168043011"
             />
-            <span> {errors.phoneNumber}</span>
+            {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="graduatedYear">Graduated Year:</label>
@@ -134,11 +138,11 @@ export default function FormInfo() {
               type="text"
               id="graduatedYear"
               name="graduatedYear"
-              value={formData.graduatedYear}
+              value={payload.graduatedYear}
               onChange={handleChange}
               placeholder="Enter Graduated Year eg 2023"
             />
-            <span> {errors.graduatedYear}</span>
+            {errors.graduatedYear && <span>{errors.graduatedYear}</span>}
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="previousJob">Previous Job:</label>
@@ -146,11 +150,11 @@ export default function FormInfo() {
               type="text"
               id="previousJob"
               name="previousJob"
-              value={formData.previousJob}
+              value={payload.previousJob}
               onChange={handleChange}
               placeholder="Previous Job eg Backend software engineer"
             />
-             <span> {errors.previousJob}</span>
+            {errors.previousJob && <span>{errors.previousJob}</span>}
           </div>
 
           <div className={styles.inputGroup}>
@@ -159,11 +163,11 @@ export default function FormInfo() {
               type="text"
               id="currentJob"
               name="currentJob"
-              value={formData.currentJob}
+              value={payload.currentJob}
               onChange={handleChange}
               placeholder="Current Job eg software engineer"
             />
-             <span> {errors.currentJob}</span>
+            {errors.currentJob && <span>{errors.currentJob}</span>}
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="locationOrCountry">
@@ -173,11 +177,13 @@ export default function FormInfo() {
               type="text"
               id="locationOrCountry"
               name="locationOrCountry"
-              value={formData.locationOrCountry}
+              value={payload.locationOrCountry}
               onChange={handleChange}
               placeholder="Location / Country of Residence eg Abeokuta/Nigeria"
             />
-             <span> {errors.locationOrCountry}</span>
+            {errors.locationOrCountry && (
+              <span>{errors.locationOrCountry}</span>
+            )}
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="supervisor">Who was your supervisor?</label>
@@ -185,11 +191,11 @@ export default function FormInfo() {
               type="text"
               id="supervisor"
               name="supervisor"
-              value={formData.supervisor}
+              value={payload.supervisor}
               onChange={handleChange}
               placeholder="Who was your supervisor?"
             />
-             <span> {errors.supervisor}</span>
+            {errors.supervisor && <span>{errors.supervisor}</span>}
           </div>
         </div>
         <div>
@@ -197,11 +203,11 @@ export default function FormInfo() {
           <textarea
             id="advice"
             name="advice"
-            value={formData.advice}
+            value={payload.advice}
             onChange={handleChange}
             placeholder="Advice for the Department"
           />
-           <span> {errors.advice}</span>
+          {errors.advice && <span>{errors.advice}</span>}
         </div>
         <div className={styles.btn}>
           <button type="submit" disabled={loading}>

@@ -23,7 +23,7 @@ const Signup = ({updateStatus,active,setActive}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(url, formData);
+            const response = await axios.post(process.env.REACT_APP_SIGNUP, formData);
             console.log('Response:', response.data.data);
          
         } catch (error) {

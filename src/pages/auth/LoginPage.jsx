@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "../../styles/signup.module.css";
 
 const Login = () => {
-  const url = "http://localhost:2028/api/v1/admin/login";
+  // const url = "http://localhost:2028/api/v1/admin/login";
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(url, formData);
+      const response = await axios.post(process.env.REACT_APP_LOGIN, formData);
       const { token } =response.data.data;
       if (!token) {
         console.error("Token not found in response:", response.data);
