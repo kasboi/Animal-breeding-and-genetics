@@ -2,23 +2,81 @@
     width: 100%;
     height: 100vh;
     overflow-x: auto;
+    scroll-behavior: smooth;
 }
 
-.tableContainer {
-    overflow-y: auto;
+
+.effect{
+    background-color: black;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 120; 
+}
+.table thead th {
+    padding: 8px;
+    position: sticky;
+    top: 0; 
+    height: 50px;
+  }
+.all{
+    background-image: linear-gradient(90deg, #00FEA8, #8A2BE2);
+    animation: gradientAnimation 5s infinite alternate;
+    background-size: 200% 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.tableOverflow{
+    overflow: scroll;  
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+
+    }
+
+    100% {
+        background-position: 100% 50%;
+
+    }
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
 }
+.table th {
+    border: 1px solid #ddd; 
+    padding: 8px;
+    text-align: left;
+  }
 
+  .table tr:nth-child(even) {
+    /* background-color: #f2f2f2;  */
+  }
+  
+  .table tr:nth-child(odd) {
+    background-color: #ffffff; 
+  }
+  .table td {
+    border: 1px solid #ddd; 
+    padding: 8px;
+  }
+  
 .table th {
     font-size: 15px;
+    background-color:plum; 
+    border: 1px solid #ddd; 
+    padding: 8px;
+    text-align: left;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     /* background: red; */
 }
 
+  
 .table th,
 .table td {
     padding: 12px;
@@ -47,6 +105,113 @@
 .page{
     margin: 10px 0;
 }
+
+/* column */
+
+
+.table td {
+    border: 1px solid #ddd; 
+    padding: 8px;
+  }
+  
+  
+  .table td:nth-child(1) {
+    background-color: #ffcccc; 
+  }
+  
+  .table td:nth-child(2) {
+    background-color: #ccffcc; 
+  }
+  
+  .table td:nth-child(3) {
+    background-color: #ccccff;
+  }
+  
+  .table td:nth-child(4) {
+    background-color: #ffffcc; 
+  }
+  
+  .table td:nth-child(5) {
+    background-color: #ffccff; 
+  }
+  
+  .table td:nth-child(6) {
+    background-color: #ccffff; 
+  }
+  
+  .table td:nth-child(7) {
+    background-color: #ffddcc;
+  }
+  
+  .table td:nth-child(8) {
+    background-color: #ddffcc;
+  }
+  
+  .table td:nth-child(9) {
+    background-color: #ccddff;
+  }
+  
+  .table td:nth-child(10) {
+    background-color: #ffeecc; 
+  }
+  /* column  end*/
+
+
+
+  /* row */
+.table td {
+    border: 1px solid #ddd; 
+    padding: 8px;
+  }
+  
+  
+  .table tr:nth-child(1n) td {
+    background-color: #ffcccc; 
+  }
+  
+  .table tr:nth-child( 2n) td {
+    background-color: #ccffcc;
+  }
+  
+  .table tr:nth-child(3n) td {
+    background-color: #ccccff; 
+  }
+  
+  .table tr:nth-child(4n) td {
+    background-color: #ffccff; 
+  }
+
+  .table tr:nth-child(5n) td {
+    background-color: #ffffcc; 
+  }
+
+  .table tr:nth-child(6n) td {
+    background-color: #ccffff; 
+  }
+  
+
+  .table tr:nth-child(7n) td {
+    background-color: #ff99cc; 
+  }
+  
+
+  .table tr:nth-child(8n) td {
+    background-color: #99ffcc; 
+  }
+  
+
+  .table tr:nth-child(9n) td {
+    background-color: #cc99ff; 
+  }
+  .table tr:nth-child(10n) td {
+    background-color: plum; 
+  }
+
+  
+
+
+  
+ 
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;
