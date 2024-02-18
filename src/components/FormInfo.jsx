@@ -53,7 +53,9 @@ export default function FormInfo() {
         const formErrors = {};
         Object.keys(formData).forEach((field) => {
           if (serverErrors[field]) {
-            formErrors[field] = serverErrors[field];
+            formErrors[field] = (
+              <span className={styles.error}>{serverErrors[field]}</span>
+            );
           }
         });
         setErrors(formErrors);
@@ -86,10 +88,9 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Enter your firstname"
             />
+            <span> {errors.firstName}</span>
           </div>
-          {errors.firstName && (
-            <span className={styles.error}>{errors.firstName}</span>
-          )}
+
           <div className={styles.inputGroup}>
             <label htmlFor="lastName">Last Name:</label>
             <input
@@ -100,10 +101,9 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Enter your lastname"
             />
+            <span> {errors.lastName}</span>
           </div>
-          {errors.lastName && (
-            <span className={styles.error}>{errors.lastName}</span>
-          )}
+
           <div className={styles.inputGroup}>
             <label htmlFor="emailAddress">Email Address:</label>
             <input
@@ -114,6 +114,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Provide your email Address eg funaab@gmail.com"
             />
+                <span> {errors.emailAddress}</span>
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="phoneNumber">Phone Number:</label>
@@ -125,6 +126,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Provide your Phone Number eg 08168043011"
             />
+            <span> {errors.phoneNumber}</span>
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="graduatedYear">Graduated Year:</label>
@@ -136,6 +138,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Enter Graduated Year eg 2023"
             />
+            <span> {errors.graduatedYear}</span>
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="previousJob">Previous Job:</label>
@@ -147,6 +150,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Previous Job eg Backend software engineer"
             />
+             <span> {errors.previousJob}</span>
           </div>
 
           <div className={styles.inputGroup}>
@@ -159,6 +163,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Current Job eg software engineer"
             />
+             <span> {errors.currentJob}</span>
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="locationOrCountry">
@@ -172,6 +177,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Location / Country of Residence eg Abeokuta/Nigeria"
             />
+             <span> {errors.locationOrCountry}</span>
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="supervisor">Who was your supervisor?</label>
@@ -183,6 +189,7 @@ export default function FormInfo() {
               onChange={handleChange}
               placeholder="Who was your supervisor?"
             />
+             <span> {errors.supervisor}</span>
           </div>
         </div>
         <div>
@@ -194,6 +201,7 @@ export default function FormInfo() {
             onChange={handleChange}
             placeholder="Advice for the Department"
           />
+           <span> {errors.advice}</span>
         </div>
         <div className={styles.btn}>
           <button type="submit" disabled={loading}>

@@ -6,7 +6,10 @@
     margin: 20px auto;
 
 }
-
+.error{
+    color: red;
+    font-size: 12px;
+}
 .main2 {
     width: 90%;
     margin: 0 auto;
