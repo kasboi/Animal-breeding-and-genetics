@@ -5,9 +5,7 @@ import Auth from "../components/context-api/Auth";
 export default function Layout() {
   return (
     <>
-      <Auth>
         <Outlet />
-      </Auth>
     </>
   );
 }

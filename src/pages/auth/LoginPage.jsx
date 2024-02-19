@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/signup.module.css";
+import { CreateAuth } from "../../components/context-api/Auth";
 
-const Login = () => {
+const Login = ({ setIsUserLoggin }) => {
   const url = "https://abg-3n55.onrender.com/api/v1/admin/login";
   const [loading, setLoading] = useState(false);
   const [payload, setPayload] = useState({
@@ -12,6 +13,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPayload({ ...payload, [name]: value });
@@ -31,12 +33,10 @@ const Login = () => {
       .then((result) => {
         console.log(result);
         if (result.status === "success") {
-          // get the token from our json
           const token = result.data.token;
-          console.log(token);
-          navigate("/admin");
-          // put the token on local storage
           localStorage.setItem("token", token);
+          navigate("/admin");
+          setIsUserLoggin(true);
         }
       })
       .catch((error) => {
