@@ -6,7 +6,6 @@ import Otp from "./pages/auth/OtpPage";
 import Admin from "./pages/AdminPage";
 import Landing from "./pages/Landing";
 import Layout from "./layouts/Layout";
-import { CreateAuth } from "./components/context-api/Auth";
 import ProtectedRoute from "./protected-route/ProtectedRoute";
 
 export default function PageRouter() {
