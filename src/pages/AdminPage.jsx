@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "../styles/admin.module.css";
 import Loading from "../components/loader/Loading";
 import { useNavigate } from "react-router-dom";
+import SingleMail from "../components/Modal/single-mail/SingleMail";
 
 function Admin() {
   const [loading, setLoading] = useState(false);
@@ -13,13 +14,26 @@ function Admin() {
   const [adminEmail, setAdminEmail] = useState("");
   const [showNav, setShowNav] = useState(false);
   const navigate = useNavigate();
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [showModal, setShowModal] = useState(true);
+  const openModal = (user) => {
+    setSelectedUser(user);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setSelectedUser(null);
+    setShowModal(false);
+  };
+
   const signOut = () => {
     localStorage.removeItem("token");
     navigate("/auth/login");
   };
+
   const toggleNav = () => {
     setShowNav(!showNav);
   };
+
   const fetchInformationOfUser = async () => {
     const URL = "https://abg-3n55.onrender.com/api/v1/admin/information";
 
@@ -68,6 +82,7 @@ function Admin() {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchInformationOfUser();
     fetchAllUser();
@@ -95,7 +110,6 @@ function Admin() {
                 <li>Send a Message</li>
               </ul>
               <div className={styles.admin}>
-              
                 <button onClick={signOut}>Logout</button>
               </div>
             </nav>
@@ -136,6 +150,7 @@ function Admin() {
                 ))}
               </tbody>
             </table>
+            {showModal && <SingleMail user={selectedUser} onClose={closeModal} />}
           </div>
           <div className={styles.page}>
             <button
@@ -154,8 +169,11 @@ function Admin() {
               Next
             </button>
           </div>
+
         </div>
-      )}{" "}
+      )}
+
+
     </>
   );
 }

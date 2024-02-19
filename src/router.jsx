@@ -11,7 +11,7 @@ import ProtectedRoute from "./protected-route/ProtectedRoute";
 export default function PageRouter() {
   const token = localStorage.getItem("token");
   const [isUserLoggin, setIsUserLoggin] = useState(token);
-  console.log(isUserLoggin);
+//   console.log(isUserLoggin);
   const userLogin = () => {
     setIsUserLoggin(true);
   };
