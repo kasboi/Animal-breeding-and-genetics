@@ -37,7 +37,7 @@ function Admin() {
   const fetchInformationOfUser = async () => {
     const URL = "https://abg-3n55.onrender.com/api/v1/admin/information";
 
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem("token"));
     if (!token) {
       console.error("Token not found in local storage");
       return;
@@ -58,7 +58,7 @@ function Admin() {
 
   const fetchAllUser = async () => {
     setLoading(true);
-    const token = localStorage.getItem("token");
+    const token = JSON.parse(localStorage.getItem("token"));
     if (!token) {
       setLoading(false);
       console.error("Token not found in local storage");

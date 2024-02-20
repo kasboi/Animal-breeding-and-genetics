@@ -9,19 +9,21 @@ import Layout from "./layouts/Layout";
 import ProtectedRoute from "./protected-route/ProtectedRoute";
 
 export default function PageRouter() {
-  const token = localStorage.getItem("token");
-  const [isUserLoggin, setIsUserLoggin] = useState(token);
-//   console.log(isUserLoggin);
+  // const token = localStorage.getItem("token");
+  const [isUserLoggin, setIsUserLoggin] = useState(false);
+  //   console.log(isUserLoggin);
   const userLogin = () => {
     setIsUserLoggin(true);
   };
 
+  let token = null
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    token = JSON.parse(localStorage.getItem("token"));
     if (token) {
       setIsUserLoggin(true);
     }
-  }, [isUserLoggin]);
+    console.log(token)
+  }, []);
   const userLogOut = (cb) => {
     setIsUserLoggin(false);
     setTimeout(cb, 200);
@@ -45,7 +47,8 @@ export default function PageRouter() {
         },
         {
           path: "/auth/login",
-          element: (
+          element: (token ?
+            <Navigate to="/admin" /> :
             <Login
               isUserLoggin={isUserLoggin}
               setIsUserLoggin={setIsUserLoggin}

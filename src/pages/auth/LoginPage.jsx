@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../../styles/signup.module.css";
@@ -19,6 +19,14 @@ const Login = ({ setIsUserLoggin }) => {
     setPayload({ ...payload, [name]: value });
   };
 
+  useEffect(()=> {
+    let token = JSON.parse(localStorage.getItem("token"))
+
+    if (token) {
+      navigate("/admin");
+    }
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -34,7 +42,7 @@ const Login = ({ setIsUserLoggin }) => {
         console.log(result);
         if (result.status === "success") {
           const token = result.data.token;
-          localStorage.setItem("token", token);
+          localStorage.setItem("token", JSON.stringify(token));
           navigate("/admin");
           setIsUserLoggin(true);
         }
